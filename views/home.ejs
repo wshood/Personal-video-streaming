@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/Stylesheets/home.css">
+    </head>
+    <title>your-name-here</title>
+    <body>
+        <section class="home">
+            <h1>Your selection</h1>
+        <ul>
+            <% for (movies of movies) { %>
+                <li><a href='/Media/<%=movies.movie%>'><img src='/Posters/<%=movies.poster%>.jpg' width = 120px height="240px"></a></li>
+            <%}%>
+        </ul>
+        </section>
+    </body>
+</html>

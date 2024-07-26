@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" href='your-stylesheet-here'>
+    </head>
+    <title>Watching <%=movie[0].movie%></title>
+    <body>
+        <h1><%=movie[0].movie%></h1>
+        <p id="Description"><%=movie[0].description%></p>
+        <div class = "row">
+            <div class="column">
+                <img src = "/Posters/<%=movie[0].poster%>.jpg" alt = "<%=movie[0].movie%>" style="width: 400px; height: 880 px;">
+             </div>
+            
+            <div class="column">
+                <video id="video" src ="/video/<%=movie[0].filmfile%>"width = 1080px height=720px controls></video>
+            </div>
+            <div class="column">
+                <% if(movie.length > 1){ %>
+                    <ul>
+                    <% movie.forEach((movie)=>{ %>
+                        <li><button type="button" onclick="document.getElementById('video').src ='/video/<%=movie.filmfile%>';document.getElementById('download').href='/Movies/<%=movie.filmfile%>.mkv'">Season: <%=movie.season%> Episode: <%=movie.episode%></button></li>
+                    <% }) %>
+                    </ul>
+                <%} %>
+            </div>
+        </div>
+    </body>
+</html>
