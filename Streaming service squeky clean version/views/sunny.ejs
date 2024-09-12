@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link rel="stylesheet" href='/Stylesheets/player.css'>
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+        <script src = "https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.min.js"></script>
+    </head>
+    <title>Watching <%=movie[0].movie%></title>
+    <body>
+        <h1><%=movie[0].movie%></h1>
+        <p id="Description"><%=movie[0].description%></p>
+        <div class = "row">
+            <div class="column">
+                <img src = "/Posters/<%=movie[0].poster%>.jpg" alt = "<%=movie[0].movie%>" style="width: 400px; height: 880 px;">
+             </div>
+            
+            <div class="column">
+                <video id="video"width = 1080px height=720px controls src = '/video/<%=movie[0].filmfile%>'></video>
+            </div>
+            <div class="column">
+                //This allows for basic show support on the platform
+                <% if(movie.length > 1){ %>
+                    <ul>
+                    <% movie.forEach((movie)=>{ %>
+                        <li><button type="button" id = "button"onclick="document.getElementById('video').src ='/video/<%=movie.filmfile%>';document.getElementById('download').href='/Movies/<%=movie.filmfile%>.mkv'">Season: <%=movie.season%> Episode: <%=movie.episode%></button></li>
+                    <% }) %>
+                    </ul>
+                <%} %>
+            </div>
+        </div>
+        <br>
+        <script>
+            const socket=io();
+                window.addEventListener('beforeunload', () => {
+                    socket.emit('stop');
+                    socket.disconnect();
+                });
+                var button = document.getElementById('button');
+                button.addEventListener('click', () => {
+                socket.emit('stop');
+                });
+                var video = document.getElementById('video');
+                video.addEventListener('canplay', () => {
+                    setTimeout(() => {
+                        video.play();
+                    }, 30000);
+                });
+        </script>
+        <style>
+            body{
+                background-image :url('/Stylesheets/<%=movie[0].style%>.jpg');
+            }
+        </style>
+    </body>
+</html>
