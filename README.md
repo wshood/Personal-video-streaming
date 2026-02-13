@@ -51,7 +51,11 @@ HTML: Basic front-end structure
 TODO:
 These are features that I will actively try to implement further down the line of development:
 Switch from WebM output to HLS streaming (for better output and Iphone support)
+Fix FFMPEG Stream for lower resource overhead during transcoding
 Search feature on frontpage
+Implement less technical installation
+Update to use cloud hosting for web pages
+Implement user accounts tied to servers
 
 Contributing
 Feel free to submit issues or pull requests.
